@@ -1,0 +1,212 @@
+{
+   "SwitchLanguage": {
+      "title": "Switch Language",
+      "en": "English",
+      "vi": "Vietnamese"
+   },
+   "Header": {
+      "notifications": "Notifications",
+      "login": "Login",
+      "register": "Register",
+      "profile": "Profile",
+      "dashboard": "Dashboard",
+      "purchases": "Purchases",
+      "wishlist": "Wishlist",
+      "logout": "Logout",
+      "search": {
+         "placeholder": "What are you looking for...",
+         "button": "Search",
+         "startVoice": "Search with voice",
+         "stopVoice": "Stop voice search"
+      },
+      "cart": {
+         "title": "Recently added products",
+         "empty": "No products yet",
+         "more": "More items in cart",
+         "viewCart": "View cart"
+      },
+      "logoutDialog": {
+         "title": "Confirm logout",
+         "description": "Are you sure you want to log out of your account?",
+         "cancel": "Cancel",
+         "confirm": "Logout"
+      },
+      "logoutSuccess": "Logged out successfully"
+   },
+   "Home": {
+      "filterTypes": {
+         "TOP_SELLING": "Top Selling Products",
+         "NEW_ARRIVALS": "New Arrivals",
+         "TOP_RATED": "Top Rated Products",
+         "DISCOUNTED": "Discounted Products",
+         "ALL": "All Products"
+      },
+      "compare": {
+         "title": "Compare Products",
+         "maxProducts": "You can compare up to 4 products",
+         "sameCategory": "You can only compare products from the same category",
+         "minProducts": "Please select at least 2 products to compare",
+         "clearAll": "Clear All",
+         "compareNow": "Compare Now"
+      },
+      "noProducts": {
+         "title": "No products found matching your filters."
+      },
+      "banners": {
+         "banner1": "Banner 1",
+         "banner2": "Banner 2",
+         "banner3": "Banner 3",
+         "banner4": "Banner 4"
+      }
+   },
+   "ProductCard": {
+      "lowStock": "Low Stock",
+      "outOfStock": "Out of Stock",
+      "category": "Category",
+      "brand": "Brand",
+      "productName": "Product Name",
+      "addToCart": "Add to Cart",
+      "compare": "Compare",
+      "selected": "Selected",
+      "loginRequired": "Please login to use this feature"
+   },
+   "ProductFilter": {
+      "title": "Product Filters",
+      "keyword": {
+         "placeholder": "Enter search keyword..."
+      },
+      "category": {
+         "label": "Select category",
+         "all": "All categories"
+      },
+      "brand": {
+         "label": "Select brand",
+         "all": "All brands"
+      },
+      "filterType": {
+         "label": "Select product type",
+         "all": "All products",
+         "topSelling": "Top selling",
+         "newArrivals": "New arrivals",
+         "topRated": "Top rated",
+         "discounted": "On sale"
+      },
+      "sort": {
+         "label": "Sort by",
+         "newest": "Newest",
+         "priceAsc": "Price: Low to High",
+         "priceDesc": "Price: High to Low",
+         "topRated": "Highest Rated"
+      },
+      "priceRange": "Price Range",
+      "options": {
+         "showDiscounted": "Show only discounted products",
+         "showInStock": "Show only in-stock products"
+      },
+      "buttons": {
+         "reset": "Reset",
+         "apply": "Apply"
+      }
+   },
+   "Order": {
+      "confirmOrder": "Confirm Order",
+      "shippingAddress": "Shipping Address",
+      "recipientName": "Recipient's Name",
+      "phoneNumber": "Phone Number",
+      "enterPhoneNumber": "Enter phone number",
+      "address": "Address",
+      "enterShippingAddress": "Enter shipping address",
+      "shippingMethod": "Shipping Method",
+      "estimatedDays": "Estimated time: {days} days",
+      "products": "Products ({count})",
+      "paymentMethod": "Payment Method",
+      "subtotal": "Subtotal",
+      "shippingFee": "Shipping Fee",
+      "total": "Total",
+      "backToCart": "< Back to cart",
+      "placeOrder": "Place Order",
+      "loading": "Loading...",
+      "validation": {
+         "addressRequired": "Please enter shipping address",
+         "phoneRequired": "Please enter phone number",
+         "invalidPhone": "Invalid phone number (10-11 digits)",
+         "selectProducts": "Please select products to order"
+      },
+      "image": "Image",
+      "name": "Name",
+      "price": "Price",
+      "quantity": "Quantity"
+   },
+   "Cart": {
+      "product": "Product",
+      "unitPrice": "Unit Price",
+      "quantity": "Quantity",
+      "total": "Total",
+      "actions": "Actions",
+      "selectAll": "Select All ({count})",
+      "delete": "Delete",
+      "emptyCart": "Your cart is empty",
+      "continueShopping": "Continue Shopping",
+      "totalPayment": "Total payment ({count} items):",
+      "saved": "Saved:",
+      "checkout": "Checkout",
+      "deleteConfirmation": "Delete Confirmation",
+      "deleteConfirmationMessage": "Are you sure you want to delete all selected items from your cart?",
+      "cancel": "Cancel",
+      "confirmDelete": "Delete"
+   },
+   "ProductDetail": {
+      "reviewCount": "({count} reviews)",
+      "soldCount": "{count} sold",
+      "relatedProducts": "You may also like",
+      "specifications": "Specifications",
+      "description": "Product Description",
+      "reviews": "Product Reviews",
+      "noDescription": "No description available for this product.",
+      "noReviews": "No reviews yet for this product.",
+      "writeReview": "Write your review",
+      "pleaseLogin": "Please login to review this product",
+      "rating": "Rating:",
+      "outOf5": "({rating}/5)",
+      "enterReview": "Enter your review about this product",
+      "sendReview": "Send Review",
+      "sending": "Sending...",
+      "reply": "Reply",
+      "cancel": "Cancel",
+      "sendReply": "Send Reply",
+      "enterReply": "Enter your reply",
+      "quantity": "Quantity",
+      "available": "products available",
+      "addToCart": "Add to Cart",
+      "buyNow": "Buy Now",
+      "loginRequired": "Please login to use this feature",
+      "outOfStock": "Out of Stock",
+      "lowStock": "Low Stock (only {stock} products left)",
+      "inStock": "In Stock ({stock} products)",
+      "productNotFound": "Product Not Found",
+      "productNotFoundDesc": "The product does not exist or has been removed.",
+      "brand": "Brand:",
+      "category": "Category:",
+      "warranty": "Warranty:",
+      "status": "Status:",
+      "updating": "Updating",
+      "specs": {
+         "cpu": "CPU:",
+         "ram": "RAM:",
+         "storage": "Storage:",
+         "display": "Display:",
+         "graphics": "Graphics Card:",
+         "battery": "Battery:",
+         "camera": "Camera:",
+         "os": "Operating System:",
+         "connectivity": "Connectivity:"
+      },
+      "totalReviews": "Total reviews: {count}",
+      "sortBy": "Sort by",
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "highestRating": "Highest Rating",
+      "lowestRating": "Lowest Rating",
+      "addImage": "Add Image"
+   }
+}

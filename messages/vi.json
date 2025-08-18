@@ -1,0 +1,297 @@
+{
+   "SwitchLanguage": {
+      "title": "Chuyển ngôn ngữ",
+      "en": "Tiếng Anh",
+      "vi": "Tiếng Việt"
+   },
+   "Header": {
+      "notifications": "Thông báo",
+      "login": "Đăng nhập",
+      "register": "Đăng ký",
+      "profile": "Hồ sơ",
+      "dashboard": "Quản lý",
+      "purchases": "Đơn mua",
+      "wishlist": "Sản phẩm yêu thích",
+      "logout": "Đăng xuất",
+      "search": {
+         "placeholder": "Bạn tìm gì hôm nay...",
+         "button": "Tìm kiếm",
+         "startVoice": "Tìm kiếm bằng giọng nói",
+         "stopVoice": "Dừng tìm kiếm"
+      },
+      "cart": {
+         "title": "Sản phẩm mới thêm",
+         "empty": "Chưa có sản phẩm",
+         "more": "Thêm hàng vào giỏ",
+         "viewCart": "Xem giỏ hàng"
+      },
+      "logoutDialog": {
+         "title": "Xác nhận đăng xuất",
+         "description": "Bạn có chắc chắn muốn đăng xuất khỏi tài khoản?",
+         "cancel": "Hủy",
+         "confirm": "Đăng xuất"
+      },
+      "logoutSuccess": "Đăng xuất thành công"
+   },
+   "Home": {
+      "filterTypes": {
+         "TOP_SELLING": "Sản phẩm bán chạy",
+         "NEW_ARRIVALS": "Sản phẩm mới",
+         "TOP_RATED": "Sản phẩm đánh giá cao",
+         "DISCOUNTED": "Sản phẩm giảm giá",
+         "ALL": "Tất cả sản phẩm"
+      },
+      "compare": {
+         "title": "So sánh sản phẩm",
+         "maxProducts": "Chỉ có thể so sánh tối đa 4 sản phẩm",
+         "sameCategory": "Chỉ có thể so sánh các sản phẩm cùng danh mục",
+         "minProducts": "Vui lòng chọn ít nhất 2 sản phẩm để so sánh",
+         "clearAll": "Xóa tất cả",
+         "compareNow": "So sánh ngay"
+      },
+      "noProducts": {
+         "title": "Không tìm thấy sản phẩm nào phù hợp với bộ lọc."
+      },
+      "banners": {
+         "banner1": "Banner 1",
+         "banner2": "Banner 2",
+         "banner3": "Banner 3",
+         "banner4": "Banner 4"
+      }
+   },
+   "ProductCard": {
+      "lowStock": "Sắp hết hàng",
+      "outOfStock": "Hết hàng",
+      "category": "Danh mục",
+      "brand": "Thương hiệu",
+      "productName": "Tên sản phẩm",
+      "addToCart": "Thêm vào giỏ",
+      "compare": "So sánh",
+      "selected": "Đã chọn",
+      "loginRequired": "Vui lòng đăng nhập để sử dụng tính năng này"
+   },
+   "ProductFilter": {
+      "title": "Bộ lọc sản phẩm",
+      "keyword": {
+         "placeholder": "Nhập từ khóa tìm kiếm..."
+      },
+      "category": {
+         "label": "Chọn danh mục",
+         "all": "Tất cả danh mục"
+      },
+      "brand": {
+         "label": "Chọn thương hiệu",
+         "all": "Tất cả thương hiệu"
+      },
+      "filterType": {
+         "label": "Chọn loại sản phẩm",
+         "all": "Tất cả sản phẩm",
+         "topSelling": "Bán chạy nhất",
+         "newArrivals": "Sản phẩm mới",
+         "topRated": "Đánh giá cao",
+         "discounted": "Đang giảm giá"
+      },
+      "sort": {
+         "label": "Sắp xếp theo",
+         "newest": "Mới nhất",
+         "priceAsc": "Giá tăng dần",
+         "priceDesc": "Giá giảm dần",
+         "topRated": "Đánh giá cao nhất"
+      },
+      "priceRange": "Khoảng giá",
+      "options": {
+         "showDiscounted": "Chỉ hiện sản phẩm giảm giá",
+         "showInStock": "Chỉ hiện sản phẩm còn hàng"
+      },
+      "buttons": {
+         "reset": "Đặt lại",
+         "apply": "Áp dụng"
+      }
+   },
+   "Order": {
+      "confirmOrder": "Xác nhận đơn hàng",
+      "shippingAddress": "Địa chỉ nhận hàng",
+      "recipientName": "Họ tên người nhận",
+      "phoneNumber": "Số điện thoại",
+      "enterPhoneNumber": "Nhập số điện thoại",
+      "address": "Địa chỉ",
+      "enterShippingAddress": "Nhập địa chỉ giao hàng",
+      "shippingMethod": "Phương thức vận chuyển",
+      "estimatedDays": "Thời gian: {days} ngày",
+      "products": "Sản phẩm ({count})",
+      "paymentMethod": "Phương thức thanh toán",
+      "subtotal": "Tạm tính",
+      "shippingFee": "Phí vận chuyển",
+      "total": "Tổng cộng",
+      "backToCart": "< Quay lại giỏ hàng",
+      "placeOrder": "Đặt hàng",
+      "loading": "Đang tải...",
+      "validation": {
+         "addressRequired": "Vui lòng nhập địa chỉ giao hàng",
+         "phoneRequired": "Vui lòng nhập số điện thoại",
+         "invalidPhone": "Số điện thoại không hợp lệ (10-11 số)",
+         "selectProducts": "Vui lòng chọn sản phẩm để đặt hàng"
+      },
+      "image": "Hình ảnh",
+      "name": "Tên sản phẩm",
+      "price": "Đơn giá",
+      "quantity": "Số lượng"
+   },
+   "Cart": {
+      "product": "Sản phẩm",
+      "unitPrice": "Đơn giá",
+      "quantity": "Số lượng",
+      "total": "Thành tiền",
+      "actions": "Thao tác",
+      "selectAll": "Chọn tất cả ({count})",
+      "delete": "Xoá",
+      "emptyCart": "Giỏ hàng của bạn đang trống",
+      "continueShopping": "Tiếp tục mua sắm",
+      "totalPayment": "Tổng thanh toán ({count} sản phẩm):",
+      "saved": "Tiết kiệm:",
+      "checkout": "Mua hàng",
+      "deleteConfirmation": "Xác nhận xóa",
+      "deleteConfirmationMessage": "Bạn có chắc chắn muốn xóa tất cả sản phẩm trong giỏ hàng?",
+      "cancel": "Hủy",
+      "confirmDelete": "Xóa"
+   },
+   "ProductDetail": {
+      "reviewCount": "({count} đánh giá)",
+      "soldCount": "{count} đã bán",
+      "relatedProducts": "Có thể bạn cũng thích",
+      "specifications": "Thông số kỹ thuật",
+      "description": "Mô Tả Sản Phẩm",
+      "reviews": "Đánh giá sản phẩm",
+      "noDescription": "Chưa có mô tả cho sản phẩm này.",
+      "noReviews": "Chưa có đánh giá nào cho sản phẩm này.",
+      "writeReview": "Viết đánh giá của bạn",
+      "pleaseLogin": "Vui lòng đăng nhập để đánh giá sản phẩm",
+      "rating": "Đánh giá:",
+      "outOf5": "({rating}/5)",
+      "enterReview": "Nhập đánh giá của bạn về sản phẩm này",
+      "sendReview": "Gửi đánh giá",
+      "sending": "Đang gửi...",
+      "reply": "Trả lời",
+      "cancel": "Hủy",
+      "sendReply": "Gửi phản hồi",
+      "enterReply": "Nhập phản hồi của bạn",
+      "quantity": "Số lượng",
+      "available": "sản phẩm có sẵn",
+      "addToCart": "Thêm vào giỏ hàng",
+      "buyNow": "Mua ngay",
+      "loginRequired": "Vui lòng đăng nhập để sử dụng tính năng này",
+      "outOfStock": "Hết hàng",
+      "lowStock": "Sắp hết hàng (còn {stock} sản phẩm)",
+      "inStock": "Còn hàng ({stock} sản phẩm)",
+      "productNotFound": "Không tìm thấy sản phẩm",
+      "productNotFoundDesc": "Sản phẩm không tồn tại hoặc đã bị xóa.",
+      "brand": "Thương hiệu:",
+      "category": "Danh mục:",
+      "warranty": "Bảo hành:",
+      "status": "Tình trạng:",
+      "updating": "Đang cập nhật",
+      "specs": {
+         "cpu": "CPU:",
+         "ram": "RAM:",
+         "storage": "Bộ nhớ:",
+         "display": "Màn hình:",
+         "graphics": "Card đồ họa:",
+         "battery": "Pin:",
+         "camera": "Camera:",
+         "os": "Hệ điều hành:",
+         "connectivity": "Kết nối:"
+      },
+      "totalReviews": "Tổng số đánh giá: {count}",
+      "sortBy": "Sắp xếp theo",
+      "newest": "Mới nhất",
+      "oldest": "Cũ nhất",
+      "highestRating": "Đánh giá cao nhất",
+      "lowestRating": "Đánh giá thấp nhất",
+      "addImage": "Thêm hình ảnh"
+   },
+   "ProductCard": {
+      "loginRequired": "Vui lòng đăng nhập để thêm vào danh sách yêu thích",
+      "productName": "Tên sản phẩm",
+      "category": "Danh mục",
+      "brand": "Thương hiệu",
+      "addToCart": "Thêm vào giỏ",
+      "outOfStock": "Hết hàng",
+      "lowStock": "Sắp hết",
+      "quickView": "Xem nhanh",
+      "compare": "So sánh",
+      "selected": "Đã chọn"
+   },
+   "ProductFilter": {
+      "title": "Bộ lọc sản phẩm",
+      "activeFilters": "bộ lọc đang áp dụng",
+      "category": {
+         "label": "Danh mục sản phẩm",
+         "all": "Tất cả danh mục"
+      },
+      "brand": {
+         "label": "Thương hiệu",
+         "all": "Tất cả thương hiệu"
+      },
+      "filterType": {
+         "label": "Loại sản phẩm",
+         "all": "Tất cả sản phẩm",
+         "topSelling": "Bán chạy nhất",
+         "newArrivals": "Hàng mới về",
+         "topRated": "Đánh giá cao",
+         "discounted": "Đang giảm giá"
+      },
+      "sort": {
+         "label": "Sắp xếp theo",
+         "newest": "Mới nhất",
+         "priceAsc": "Giá thấp đến cao",
+         "priceDesc": "Giá cao đến thấp"
+      },
+      "priceRange": {
+         "label": "Khoảng giá",
+         "min": "Giá tối thiểu",
+         "max": "Giá tối đa"
+      },
+      "options": {
+         "title": "Tùy chọn bổ sung",
+         "showInStock": "Chỉ hiển thị hàng còn trong kho"
+      },
+      "buttons": {
+         "reset": "Đặt lại bộ lọc"
+      }
+   },
+   "Home": {
+      "banners": {
+         "banner": "Banner quảng cáo",
+         "banner1": "Banner khuyến mãi 1",
+         "banner2": "Banner khuyến mãi 2",
+         "banner3": "Banner khuyến mãi 3",
+         "banner4": "Banner khuyến mãi 4"
+      },
+      "filterTypes": {
+         "ALL": "Tất cả sản phẩm",
+         "TOP_SELLING": "Sản phẩm bán chạy",
+         "NEW_ARRIVALS": "Hàng mới về",
+         "TOP_RATED": "Đánh giá cao nhất",
+         "DISCOUNTED": "Đang giảm giá"
+      },
+      "results": {
+         "showing": "Hiển thị",
+         "products": "sản phẩm",
+         "noResults": "Không tìm thấy sản phẩm nào"
+      },
+      "noProducts": {
+         "title": "Không tìm thấy sản phẩm",
+         "description": "Thử điều chỉnh bộ lọc hoặc tìm kiếm với từ khóa khác",
+         "resetFilters": "Đặt lại bộ lọc"
+      },
+      "compare": {
+         "title": "So sánh sản phẩm",
+         "selected": "đã chọn",
+         "maxProducts": "Chỉ có thể so sánh tối đa 4 sản phẩm",
+         "sameCategory": "Chỉ có thể so sánh các sản phẩm cùng danh mục",
+         "minProducts": "Vui lòng chọn ít nhất 2 sản phẩm để so sánh",
+         "clearAll": "Xóa tất cả",
+         "compareNow": "So sánh ngay"
+      }
+   }
+}
