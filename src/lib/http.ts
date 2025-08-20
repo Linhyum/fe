@@ -13,7 +13,7 @@ class Http {
       this.refreshToken = ''
       this.refreshTokenRequest = null
       this.instance = axios.create({
-         baseURL: 'http://localhost:8080/api/v1',
+         baseURL: 'https://api.bedeploy.online/api/v1',
          timeout: 30_000,
          headers: {
             'Content-Type': 'application/json'
@@ -117,19 +117,19 @@ class Http {
 
    // Thêm các phương thức setter cho token
    public setAccessToken(token: string) {
-      this.accessToken = token;
-   // Lưu vào cookie
-   if (typeof window !== 'undefined') {
-         document.cookie = `access_token=${token}; path=/; max-age=86400; SameSite=Strict`;
-   }
+      this.accessToken = token
+      // Lưu vào cookie
+      if (typeof window !== 'undefined') {
+         document.cookie = `access_token=${token}; path=/; max-age=86400; SameSite=Strict`
+      }
    }
 
    public setRefreshToken(token: string) {
-      this.refreshToken = token;
-   // Lưu vào cookie
-   if (typeof window !== 'undefined') {
-      document.cookie = `refresh_token=${token}; path=/; max-age=604800; SameSite=Strict`;
-   }
+      this.refreshToken = token
+      // Lưu vào cookie
+      if (typeof window !== 'undefined') {
+         document.cookie = `refresh_token=${token}; path=/; max-age=604800; SameSite=Strict`
+      }
    }
 
    public clearTokens() {

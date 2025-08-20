@@ -44,7 +44,13 @@ export const updatePaymentMethod = (body: PaymentMethodType) => http.put(`/admin
 // Brand
 export const getAllBrand = (queryParams: GetBrandQueryParamsType) =>
    http.get<GetAllBrandType>(`/admin/brands?` + queryString.stringify(queryParams))
-export const createBrand = (body: BrandType) => http.post(`/admin/brands`, body)
+
+export const createBrand = (body: BrandType) =>
+   http.post('/admin/brands', body, {
+      headers: {
+         'Content-Type': 'multipart/form-data'
+      }
+   })
 export const updateBrand = (body: BrandType, id: number) =>
    http.put(`/admin/brands/${id}`, body, {
       headers: {
