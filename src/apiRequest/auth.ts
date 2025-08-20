@@ -15,10 +15,10 @@ export const refreshToken = (refreshToken: string) => http.post<LoginResType>('/
 export const verifyEmail = (token: string) => http.get('/auth/verify-email?token=' + token)
 //OAuth2
 export const getGoogleAuthUrl = () =>
-   `http://localhost:8080/api/v1/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/callback`
+   `https://api.bedeploy.online/api/v1/oauth2/authorize/google?redirect_uri=https://fe-i7eo.vercel.app/oauth2/callback`
 
 export const getDiscordAuthUrl = () =>
-   `http://localhost:8080/api/v1/oauth2/authorize/discord?redirect_uri=http://localhost:3000/oauth2/callback`
+   `https://api.bedeploy.online/api/v1/oauth2/authorize/discord?redirect_uri=https://fe-i7eo.vercel.app/oauth2/callback`
 
 export const handleOAuth2Redirect = (token: string, refreshToken: string) =>
    http.get<LoginResType>(`/auth/oauth2/redirect?token=${token}&refreshToken=${refreshToken}`)
