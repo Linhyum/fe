@@ -13,7 +13,7 @@ class Http {
       this.refreshToken = ''
       this.refreshTokenRequest = null
       this.instance = axios.create({
-         baseURL: 'http://localhost:8080/api/v1',
+         baseURL: 'https://api.bedeploy.online/api/v1',
          timeout: 30_000,
          headers: {
             'Content-Type': 'application/json'
