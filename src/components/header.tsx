@@ -120,7 +120,6 @@ export default function Header() {
       setShowLogoutDialog(false)
       toast.success(t('logoutSuccess'))
    }
-   console.log(userInfo?.picture)
 
    return (
       <>
@@ -133,15 +132,13 @@ export default function Header() {
                         <Popover>
                            <PopoverTrigger asChild>
                               <button className='flex items-center gap-1 text-white'>
-                                 {userInfo.picture && (
-                                    <Image
-                                       src={userInfo.picture}
-                                       alt=''
-                                       className='w-10 h-10 rounded-full'
-                                       width={40}
-                                       height={40}
-                                    />
-                                 )}
+                                 <Image
+                                    src={userInfo.picture || 'https://cdn-icons-png.freepik.com/512/3607/3607444.png'}
+                                    alt=''
+                                    className='w-10 h-10 rounded-full'
+                                    width={40}
+                                    height={40}
+                                 />
                                  <span>
                                     {userInfo.surName} {userInfo.lastName}
                                  </span>
