@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 // ================== CONFIG ==================
-const BASE_URL = 'http://127.0.0.1:8080/api/v1'
+const BASE_URL = 'https://api.bedeploy.online/api/v1'
 const TOTAL_USERS = 500
 const TEST_DURATION = 5 * 60 * 1000 // 5 phút
 const LOGIN_BATCH_SIZE = 50 // Số user login cùng lúc
@@ -75,38 +75,174 @@ async function measureRequest(method, url, data = null, token = null) {
    const start = Date.now()
    const headers = { 'Content-Type': 'application/json' }
    if (token) headers['Authorization'] = `Bearer ${token}`
+   const config = { headers, timeout: 10000 }
 
+   let ok = true
    try {
       if (method === 'GET') {
-         await axios.get(url, { headers })
+         await axios.get(url, config)
       } else if (method === 'POST') {
-         await axios.post(url, data, { headers })
+         await axios.post(url, data, config)
+      } else if (method === 'DELETE') {
+         await axios.delete(url, config)
       }
-
+   } catch (err) {
+      ok = false
+   } finally {
       const duration = Date.now() - start
       responseTimes.push(duration)
       totalRequests++
-      successCount++
-   } catch (err) {
-      totalRequests++
-      errorCount++
-      console.error(`Request lỗi: ${err.message}`)
+      if (ok) successCount++
+      else errorCount++
    }
 }
 
-// Mô phỏng hành vi của 1 user
+function randomProductId() {
+   return Math.floor(Math.random() * 7824) + 1
+}
+
+function randomKeyword() {
+   const keywords = ['camera', 'laptop', 'phone', 'watch', 'mouse']
+   return keywords[Math.floor(Math.random() * keywords.length)]
+}
+
+function randomInt(min, max) {
+   return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+function randomPhone() {
+   return '09' + Math.floor(10000000 + Math.random() * 89999999)
+}
+
+function randomAddress() {
+   const streets = ['Nguyen Van A', 'Le Loi', 'Tran Hung Dao', 'Vo Thi Sau', 'Pham Ngu Lao']
+   const districts = ['Q1', 'Q3', 'Q5', 'Q7', 'Binh Thanh']
+   return `${randomInt(1, 999)} ${streets[randomInt(0, streets.length - 1)]}, ${
+      districts[randomInt(0, districts.length - 1)]
+   }, TP.HCM`
+}
+
+function randomBrand() {
+   const brands = [
+      'VideoSecu',
+      'Barnes & Noble',
+      'LASUS',
+      'Sony',
+      'RCA',
+      'Belkin',
+      'Brother',
+      'Kensington',
+      'Koss',
+      'Olympus',
+      'Sangean',
+      'Seagate',
+      'NETGEAR',
+      'Linksys',
+      'Monster',
+      'MMUSC',
+      'Viking',
+      'Garmin',
+      'Bushnell',
+      'Sennheiser',
+      'Panasonic'
+   ]
+   return brands[randomInt(0, brands.length - 1)]
+}
+
+function pickWeighted(items) {
+   const sum = items.reduce((s, it) => s + it.weight, 0)
+   let r = Math.random() * sum
+   for (const it of items) {
+      r -= it.weight
+      if (r < 0) return it.fn
+   }
+   return items[items.length - 1].fn
+}
+
 async function userScenario(user) {
    const startTime = Date.now()
+   const actions = [
+      { weight: 12, fn: () => measureRequest('GET', `${BASE_URL}/products/${randomProductId()}`) },
+      {
+         weight: 12,
+         fn: () => measureRequest('GET', `${BASE_URL}/products?keyword=${encodeURIComponent(randomKeyword())}`)
+      },
+      {
+         weight: 8,
+         fn: () =>
+            measureRequest(
+               'POST',
+               `${BASE_URL}/cart/add?productId=${randomProductId()}&quantity=1&userId=${user.userId}`,
+               null,
+               user.token
+            )
+      },
+      {
+         weight: 6,
+         fn: () =>
+            measureRequest(
+               'POST',
+               `${BASE_URL}/wishlist/add?productId=${randomProductId()}&userId=${user.userId}`,
+               null,
+               user.token
+            )
+      },
+      {
+         weight: 8,
+         fn: () => measureRequest('GET', `${BASE_URL}/recommendations/${user.userId}?k=8`, null, user.token)
+      },
+      {
+         weight: 6,
+         fn: () =>
+            measureRequest(
+               'GET',
+               `${BASE_URL}/products?filterType=NEW_ARRIVALS&page=0&size=10&sortBy=createdAt&sortDir=desc`
+            )
+      },
+      {
+         weight: 6,
+         fn: () =>
+            measureRequest(
+               'GET',
+               `${BASE_URL}/products?categoryId=${randomInt(1, 24)}&page=0&size=10&sortBy=id&sortDir=asc`
+            )
+      },
+      {
+         weight: 6,
+         fn: () =>
+            measureRequest(
+               'GET',
+               `${BASE_URL}/products?brand=${encodeURIComponent(randomBrand())}&page=0&size=10&sortBy=price&sortDir=asc`
+            )
+      },
+      { weight: 4, fn: () => measureRequest('GET', `${BASE_URL}/flash-sales/current`) },
+      { weight: 3, fn: () => measureRequest('GET', `${BASE_URL}/orders/user/${user.userId}`, null, user.token) },
+      { weight: 2, fn: () => measureRequest('GET', `${BASE_URL}/users/${user.userId}`, null, user.token) },
+      { weight: 2, fn: () => measureRequest('GET', `${BASE_URL}/users/profile`, null, user.token) },
+      {
+         weight: 1,
+         fn: () =>
+            measureRequest(
+               'POST',
+               `${BASE_URL}/orders?userId=${user.userId}`,
+               {
+                  shippingAddress: randomAddress(),
+                  phoneNumber: randomPhone(),
+                  paymentMethodId: randomInt(1, 5),
+                  shippingMethodId: randomInt(1, 4),
+                  orderDetails: [{ productId: randomInt(1, 7824), quantity: 1, price: randomInt(100000, 5000000) }]
+               },
+               user.token
+            )
+      },
+      // Nghỉ dài hơn một chút (giảm RPS bùng nổ)
+      { weight: 5, fn: () => sleep(randomInt(300, 1200)) }
+   ]
+
    while (Date.now() - startTime < TEST_DURATION) {
-      await measureRequest('GET', `${BASE_URL}/products/7823`)
-      await measureRequest('GET', `${BASE_URL}/products?keyword=camera`)
-      await measureRequest(
-         'POST',
-         `${BASE_URL}/cart/add?productId=664&quantity=1&userId=${user.userId}`,
-         null,
-         user.token
-      )
-      await sleep(10000)
+      const action = pickWeighted(actions)
+      await action()
+      await sleep(randomInt(100, 300))
    }
 }
 

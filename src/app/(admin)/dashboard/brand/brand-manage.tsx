@@ -1,12 +1,14 @@
+// app/admin/brand-manage/page.tsx
 'use client'
+
 import { useCreateBrand, useGetAllBrand, useUpdateBrand } from '@/queries/useAdmin'
 import type React from 'react'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Switch } from '@/components/ui/switch'
 import { Edit, Plus, Search } from 'lucide-react'
 import type { BrandType, GetBrandQueryParamsType } from '@/types/admin.type'
@@ -45,72 +47,47 @@ export default function BrandManage() {
    })
    const [editingBrand, setEditingBrand] = useState<BrandType | null>(null)
 
-   // Image states
+   // image states
    const [newBrandImage, setNewBrandImage] = useState<File | null>(null)
    const [editingBrandImage, setEditingBrandImage] = useState<File | null>(null)
    const [newBrandImagePreview, setNewBrandImagePreview] = useState<string | null>(null)
    const [editingBrandImagePreview, setEditingBrandImagePreview] = useState<string | null>(null)
 
-   // Cập nhật page trong queryParams khi currentPage thay đổi
+   // sync page -> queryParams
    useEffect(() => {
-      setQueryParams((prev) => ({
-         ...prev,
-         page: currentPage - 1
-      }))
+      setQueryParams((prev) => ({ ...prev, page: currentPage - 1 }))
    }, [currentPage])
 
-   const handlePageClick = (e: { selected: number }) => {
-      setCurrentPage(e.selected + 1)
-   }
+   const handlePageClick = (e: { selected: number }) => setCurrentPage(e.selected + 1)
 
    const handleSortChange = (value: string) => {
       const [newSortBy, newSortDir] = value.split('-')
-      // Reset về trang 1 khi thay đổi filter
       setCurrentPage(1)
-      setQueryParams({
-         ...queryParams,
-         page: 0,
-         sortBy: newSortBy,
-         sortDir: newSortDir
-      })
+      setQueryParams({ ...queryParams, page: 0, sortBy: newSortBy, sortDir: newSortDir as 'asc' | 'desc' })
    }
 
    const handlePageSizeChange = (value: string) => {
       const newSize = Number(value)
-      // Reset về trang 1 khi thay đổi số lượng hiển thị
       setCurrentPage(1)
-      setQueryParams({
-         ...queryParams,
-         page: 0,
-         size: newSize
-      })
+      setQueryParams({ ...queryParams, page: 0, size: newSize })
    }
 
    const handleSearch = () => {
       setCurrentPage(1)
-      setQueryParams({
-         ...queryParams,
-         page: 0,
-         search: searchTerm.trim()
-      })
+      setQueryParams({ ...queryParams, page: 0, search: searchTerm.trim() })
    }
 
    const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter') {
-         handleSearch()
-      }
+      if (e.key === 'Enter') handleSearch()
    }
 
    const handleClearSearch = () => {
       setSearchTerm('')
       setCurrentPage(1)
-      setQueryParams({
-         ...queryParams,
-         page: 0,
-         search: ''
-      })
+      setQueryParams({ ...queryParams, page: 0, search: '' })
    }
 
+   // CREATE brand — body must be { brandName, description, status }
    const handleAddBrand = () => {
       if (!newBrand.brandName?.trim()) {
          toast.error('Tên thương hiệu không được để trống')
@@ -127,31 +104,24 @@ export default function BrandManage() {
          })
       )
 
-      if (newBrandImage) {
-         formData.append('image', newBrandImage)
-      }
+      if (newBrandImage) formData.append('image', newBrandImage)
 
-      //@ts-ignore
+      // @ts-ignore mutation expects FormData
       createBrand.mutate(formData, {
          onSuccess: () => {
             setIsAddDialogOpen(false)
-            setNewBrand({
-               brandName: '',
-               description: '',
-               status: true
-            })
+            setNewBrand({ brandName: '', description: '', status: true })
             setNewBrandImage(null)
-            // Clean up preview URL
             if (newBrandImagePreview) {
                URL.revokeObjectURL(newBrandImagePreview)
                setNewBrandImagePreview(null)
             }
-            // Refresh data sau khi thêm thành công
             getAllBrand.refetch()
          }
       })
    }
 
+   // UPDATE brand — body must be { brandName, description, status } (NO id inside body)
    const handleEditBrand = () => {
       if (!editingBrand || !editingBrand.brandName.trim()) {
          toast.error('Tên thương hiệu không được để trống')
@@ -162,18 +132,16 @@ export default function BrandManage() {
       formData.append(
          'brand',
          JSON.stringify({
-            id: editingBrand.id,
             brandName: editingBrand.brandName,
             description: editingBrand.description,
             status: editingBrand.status
          })
       )
 
-      if (editingBrandImage) {
-         formData.append('image', editingBrandImage)
-      }
+      if (editingBrandImage) formData.append('image', editingBrandImage)
 
-      //@ts-ignore
+      // id goes in the URL/path param, body excludes id
+      // @ts-ignore
       updateBrand.mutate(
          { body: formData as any, id: editingBrand.id },
          {
@@ -181,12 +149,10 @@ export default function BrandManage() {
                setIsEditDialogOpen(false)
                setEditingBrand(null)
                setEditingBrandImage(null)
-               // Clean up preview URL
                if (editingBrandImagePreview) {
                   URL.revokeObjectURL(editingBrandImagePreview)
                   setEditingBrandImagePreview(null)
                }
-               // Refresh data sau khi cập nhật thành công
                getAllBrand.refetch()
             }
          }
@@ -196,7 +162,6 @@ export default function BrandManage() {
    const openEditDialog = (brand: BrandType) => {
       setEditingBrand({ ...brand })
       setEditingBrandImage(null)
-      // Clean up any existing preview
       if (editingBrandImagePreview) {
          URL.revokeObjectURL(editingBrandImagePreview)
          setEditingBrandImagePreview(null)
@@ -207,7 +172,7 @@ export default function BrandManage() {
    const formatDate = (dateString: string) => {
       try {
          return format(new Date(dateString), 'dd/MM/yyyy HH:mm', { locale: vi })
-      } catch (error) {
+      } catch {
          return 'Không xác định'
       }
    }
@@ -220,6 +185,7 @@ export default function BrandManage() {
                <Plus className='mr-2 h-4 w-4' /> Thêm thương hiệu
             </Button>
          </div>
+
          <div className='flex items-center flex-wrap gap-4 my-5'>
             <div className='flex items-center gap-2'>
                <Input
@@ -238,6 +204,7 @@ export default function BrandManage() {
                   </Button>
                )}
             </div>
+
             <div className='flex items-center gap-2'>
                <span className='text-sm'>Hiển thị:</span>
                <Select value={(queryParams.size ?? 10).toString()} onValueChange={handlePageSizeChange}>
@@ -252,6 +219,7 @@ export default function BrandManage() {
                   </SelectContent>
                </Select>
             </div>
+
             <div className='flex items-center gap-2'>
                <span className='text-sm'>Sắp xếp:</span>
                <Select value={`${queryParams.sortBy}-${queryParams.sortDir}`} onValueChange={handleSortChange}>
@@ -296,7 +264,7 @@ export default function BrandManage() {
                         <TableRow key={brand.id}>
                            <TableCell>{brand.id}</TableCell>
                            <TableCell>
-                              {/* @ts-ignore */}
+                              {/* @ts-ignore allow remote url */}
                               <Image
                                  src={brand.imageUrl || '/placeholder.svg'}
                                  alt={brand.brandName}
@@ -350,17 +318,14 @@ export default function BrandManage() {
             </div>
          )}
 
-         {/* Dialog thêm thương hiệu */}
+         {/* Add Brand */}
          <Dialog
             open={isAddDialogOpen}
             onOpenChange={(open) => {
                setIsAddDialogOpen(open)
-               if (!open) {
-                  // Clean up preview when dialog closes
-                  if (newBrandImagePreview) {
-                     URL.revokeObjectURL(newBrandImagePreview)
-                     setNewBrandImagePreview(null)
-                  }
+               if (!open && newBrandImagePreview) {
+                  URL.revokeObjectURL(newBrandImagePreview)
+                  setNewBrandImagePreview(null)
                }
             }}
          >
@@ -397,19 +362,9 @@ export default function BrandManage() {
                         onChange={(e) => {
                            const file = e.target.files?.[0] || null
                            setNewBrandImage(file)
-
-                           // Clean up previous preview URL
-                           if (newBrandImagePreview) {
-                              URL.revokeObjectURL(newBrandImagePreview)
-                           }
-
-                           // Create new preview URL
-                           if (file) {
-                              const previewUrl = URL.createObjectURL(file)
-                              setNewBrandImagePreview(previewUrl)
-                           } else {
-                              setNewBrandImagePreview(null)
-                           }
+                           if (newBrandImagePreview) URL.revokeObjectURL(newBrandImagePreview)
+                           if (file) setNewBrandImagePreview(URL.createObjectURL(file))
+                           else setNewBrandImagePreview(null)
                         }}
                      />
                      {newBrandImage && (
@@ -430,13 +385,18 @@ export default function BrandManage() {
                         </div>
                      )}
                   </div>
-                  <div className='flex items-center gap-2'>
+                  <div className='flex items-center justify-between'>
+                     <div className='space-y-0.5'>
+                        <Label htmlFor='status'>Trạng thái</Label>
+                        <div className='text-sm text-muted-foreground'>
+                           {newBrand.status ? 'Hoạt động' : 'Không hoạt động'}
+                        </div>
+                     </div>
                      <Switch
                         id='status'
-                        checked={newBrand.status}
+                        checked={!!newBrand.status}
                         onCheckedChange={(checked) => setNewBrand({ ...newBrand, status: checked })}
                      />
-                     <Label htmlFor='status'>Kích hoạt</Label>
                   </div>
                </div>
                <DialogFooter>
@@ -450,17 +410,14 @@ export default function BrandManage() {
             </DialogContent>
          </Dialog>
 
-         {/* Dialog chỉnh sửa thương hiệu */}
+         {/* Edit Brand */}
          <Dialog
             open={isEditDialogOpen}
             onOpenChange={(open) => {
                setIsEditDialogOpen(open)
-               if (!open) {
-                  // Clean up preview when dialog closes
-                  if (editingBrandImagePreview) {
-                     URL.revokeObjectURL(editingBrandImagePreview)
-                     setEditingBrandImagePreview(null)
-                  }
+               if (!open && editingBrandImagePreview) {
+                  URL.revokeObjectURL(editingBrandImagePreview)
+                  setEditingBrandImagePreview(null)
                }
             }}
          >
@@ -498,33 +455,23 @@ export default function BrandManage() {
                            onChange={(e) => {
                               const file = e.target.files?.[0] || null
                               setEditingBrandImage(file)
-
-                              // Clean up previous preview URL
-                              if (editingBrandImagePreview) {
-                                 URL.revokeObjectURL(editingBrandImagePreview)
-                              }
-
-                              // Create new preview URL
-                              if (file) {
-                                 const previewUrl = URL.createObjectURL(file)
-                                 setEditingBrandImagePreview(previewUrl)
-                              } else {
-                                 setEditingBrandImagePreview(null)
-                              }
+                              if (editingBrandImagePreview) URL.revokeObjectURL(editingBrandImagePreview)
+                              if (file) setEditingBrandImagePreview(URL.createObjectURL(file))
+                              else setEditingBrandImagePreview(null)
                            }}
                         />
                         {editingBrandImage && (
                            <div className='text-sm text-muted-foreground'>Đã chọn: {editingBrandImage.name}</div>
                         )}
 
-                        {/* Show current image if available */}
-                        {/* @ts-ignore */}
+                        {/* current image */}
+                        {/* @ts-ignore allow remote url */}
                         {editingBrand?.imageUrl && !editingBrandImagePreview && (
                            <div className='mt-2'>
                               <Label>Hình ảnh hiện tại:</Label>
                               <div className='mt-1 border rounded-lg p-2 bg-gray-50'>
+                                 {/* @ts-ignore */}
                                  <Image
-                                    /* @ts-ignore */
                                     src={editingBrand.imageUrl || '/placeholder.svg'}
                                     alt={editingBrand.brandName}
                                     width={200}
@@ -535,7 +482,7 @@ export default function BrandManage() {
                            </div>
                         )}
 
-                        {/* Show preview of new image */}
+                        {/* new preview */}
                         {editingBrandImagePreview && (
                            <div className='mt-2'>
                               <Label>Xem trước hình ảnh mới:</Label>
@@ -551,13 +498,19 @@ export default function BrandManage() {
                            </div>
                         )}
                      </div>
-                     <div className='flex items-center gap-2'>
+
+                     <div className='flex items-center justify-between'>
+                        <div className='space-y-0.5'>
+                           <Label htmlFor='editStatus'>Trạng thái</Label>
+                           <div className='text-sm text-muted-foreground'>
+                              {editingBrand.status ? 'Hoạt động' : 'Không hoạt động'}
+                           </div>
+                        </div>
                         <Switch
                            id='editStatus'
                            checked={editingBrand.status}
                            onCheckedChange={(checked) => setEditingBrand({ ...editingBrand, status: checked })}
                         />
-                        <Label htmlFor='editStatus'>Kích hoạt</Label>
                      </div>
                   </div>
                )}
