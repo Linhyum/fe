@@ -655,8 +655,11 @@ export default function FlashSaleManage() {
                                                 alt={item.productName}
                                                 className='w-10 h-10 rounded object-cover'
                                              />
-                                             <span className='font-medium'>
-                                                {decodeHTML(item.productName.slice(0, 40))}...
+                                             <span
+                                                title={decodeHTML(item.productName)}
+                                                className='font-medium max-w-[300px] truncate'
+                                             >
+                                                {decodeHTML(item.productName)}
                                              </span>
                                           </div>
                                        </TableCell>
@@ -760,8 +763,8 @@ export default function FlashSaleManage() {
                                              className='w-8 h-8 rounded object-cover flex-shrink-0'
                                           />
                                           <div className='flex-1 min-w-0'>
-                                             <p className='font-medium truncate'>
-                                                {decodeHTML(product.name.slice(0, 60))}...
+                                             <p className='font-medium truncate max-w-[300px]'>
+                                                {decodeHTML(product.name)}
                                              </p>
                                              <p className='text-sm text-gray-500'>
                                                 {formatCurrency(product.price)} • ID: {product.id}

@@ -229,7 +229,7 @@ export default function Statistics() {
                <TabsTrigger value='orders'>Đơn hàng gần đây</TabsTrigger>
                <TabsTrigger value='products'>Sản phẩm bán chạy</TabsTrigger>
                <TabsTrigger value='customers'>Khách hàng hàng đầu</TabsTrigger>
-               <TabsTrigger value='charts'>Biểu đồ</TabsTrigger>
+               {/* <TabsTrigger value='charts'>Biểu đồ</TabsTrigger> */}
                <TabsTrigger value='revenue-interval'>Doanh thu theo thời gian</TabsTrigger>
                <TabsTrigger value='revenue-category'>Doanh thu theo danh mục</TabsTrigger>
             </TabsList>
@@ -279,7 +279,7 @@ export default function Statistics() {
             <TabsContent value='products'>
                <Card>
                   <CardHeader>
-                     <CardTitle>Sản phẩm bán chạy</CardTitle>
+                     <CardTitle>Các sản phẩm bán chạy</CardTitle>
                   </CardHeader>
                   <CardContent>
                      <Table>
@@ -293,10 +293,13 @@ export default function Statistics() {
                         </TableHeader>
                         <TableBody>
                            {statistics?.topSellingProducts && statistics?.topSellingProducts.length > 0 ? (
-                              statistics?.topSellingProducts.map((product) => (
+                              statistics?.topSellingProducts.slice(0, 10).map((product) => (
                                  <TableRow key={product.id}>
                                     <TableCell className='font-medium'>{product.id}</TableCell>
-                                    <TableCell>{decodeHTML(product.name)}</TableCell>
+                                    <TableCell title={decodeHTML(product.name)}>
+                                       {decodeHTML(product.name.slice(0, 100))}{' '}
+                                       {product.name.length <= 100 ? '' : '...'}
+                                    </TableCell>
                                     <TableCell>{formatCurrency(product.price)}</TableCell>
                                     <TableCell className='text-right'>{product.soldQuantity}</TableCell>
                                  </TableRow>
