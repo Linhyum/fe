@@ -763,7 +763,7 @@ export default function FlashSaleManage() {
                                              className='w-8 h-8 rounded object-cover flex-shrink-0'
                                           />
                                           <div className='flex-1 min-w-0'>
-                                             <p className='font-medium truncate max-w-[300px]'>
+                                             <p className='font-medium truncate max-w-[400px]'>
                                                 {decodeHTML(product.name)}
                                              </p>
                                              <p className='text-sm text-gray-500'>
