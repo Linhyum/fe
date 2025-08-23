@@ -335,12 +335,12 @@ export default function ProductDetail({ id }: { id: string }) {
    return (
       <div className='my-5 container'>
          <div className='bg-secondary rounded-lg p-5 flex flex-col md:flex-row gap-10'>
-            <div className='w-full md:w-1/2 flex flex-col gap-2'>
+            <div className='w-full md:w-[40%] flex flex-col gap-2'>
                {/* Hình ảnh chính */}
                <div
                   onMouseMove={handleImageZoom}
                   onMouseLeave={handleImageZoomLeave}
-                  className='relative w-full overflow-hidden rounded-md aspect-square'
+                  className='relative overflow-hidden rounded-md aspect-square'
                >
                   {product.productImages && product.productImages.length > 0 ? (
                      <Image
@@ -418,7 +418,7 @@ export default function ProductDetail({ id }: { id: string }) {
                )}
             </div>
 
-            <div className='w-full md:w-1/2 flex flex-col gap-5'>
+            <div className='w-full md:w-[60%] flex flex-col gap-5'>
                {/* Tên sản phẩm */}
                <h1 className='font-medium text-2xl'>{decodeHTML(product.name)}</h1>
 
