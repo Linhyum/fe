@@ -92,9 +92,9 @@ export default function Statistics() {
          case 3:
             return <span className='px-2 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs'>Đã giao</span>
          case 4:
-            return <span className='px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs'>Đã hủy</span>
+            return <span className='px-2 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs'>Hoàn thành</span>
          default:
-            return <span className='px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-xs'>Không xác định</span>
+            return <span className='px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs'>Đã hủy</span>
       }
    }
 
