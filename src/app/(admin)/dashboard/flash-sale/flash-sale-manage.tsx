@@ -441,20 +441,22 @@ export default function FlashSaleManage() {
                                  <Button variant='outline' size='icon' onClick={() => openViewDialog(flashSale)}>
                                     <Eye className='h-4 w-4' />
                                  </Button>
-                                 <Button variant='outline' size='icon' onClick={() => openProductDialog(flashSale)}>
-                                    <Package className='h-4 w-4' />
-                                 </Button>
+                                 {flashSale.isUpcoming && (
+                                    <Button variant='outline' size='icon' onClick={() => openProductDialog(flashSale)}>
+                                       <Package className='h-4 w-4' />
+                                    </Button>
+                                 )}
                                  {/* <Button variant='outline' size='icon' onClick={() => openEditDialog(flashSale)}>
                                     <Edit className='h-4 w-4' />
                                  </Button> */}
-                                 <Button
+                                 {/* <Button
                                     variant='outline'
                                     size='icon'
                                     onClick={() => handleDeleteFlashSale(flashSale.id)}
                                     className='text-red-600 hover:text-red-700'
                                  >
                                     <Trash2 className='h-4 w-4' />
-                                 </Button>
+                                 </Button> */}
                               </div>
                            </TableCell>
                         </TableRow>
@@ -641,7 +643,6 @@ export default function FlashSaleManage() {
                                     <TableHead>Giảm giá</TableHead>
                                     <TableHead>Kho</TableHead>
                                     <TableHead>Đã bán</TableHead>
-                                    <TableHead>Thao tác</TableHead>
                                  </TableRow>
                               </TableHeader>
                               <TableBody>
@@ -654,7 +655,9 @@ export default function FlashSaleManage() {
                                                 alt={item.productName}
                                                 className='w-10 h-10 rounded object-cover'
                                              />
-                                             <span className='font-medium'>{decodeHTML(item.productName)}</span>
+                                             <span className='font-medium'>
+                                                {decodeHTML(item.productName.slice(0, 40))}...
+                                             </span>
                                           </div>
                                        </TableCell>
                                        <TableCell>{formatCurrency(item.originalPrice)}</TableCell>
@@ -677,14 +680,14 @@ export default function FlashSaleManage() {
                                              >
                                                 <Edit className='h-3 w-3' />
                                              </Button> */}
-                                             <Button
+                                             {/* <Button
                                                 variant='outline'
                                                 size='sm'
                                                 onClick={() => handleDeleteProduct(item.id)}
                                                 className='text-red-600'
                                              >
                                                 <Trash2 className='h-3 w-3' />
-                                             </Button>
+                                             </Button> */}
                                           </div>
                                        </TableCell>
                                     </TableRow>
@@ -757,7 +760,9 @@ export default function FlashSaleManage() {
                                              className='w-8 h-8 rounded object-cover flex-shrink-0'
                                           />
                                           <div className='flex-1 min-w-0'>
-                                             <p className='font-medium truncate'>{decodeHTML(product.name)}</p>
+                                             <p className='font-medium truncate'>
+                                                {decodeHTML(product.name.slice(0, 60))}...
+                                             </p>
                                              <p className='text-sm text-gray-500'>
                                                 {formatCurrency(product.price)} • ID: {product.id}
                                              </p>
